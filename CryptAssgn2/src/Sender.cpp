@@ -1,3 +1,6 @@
+#ifndef Sender_cpp
+#define Sender_cpp
+
 #include <string.h>
 #include <iostream>
 
@@ -9,8 +12,8 @@ class Sender
 
 public:
 
-	void setOriginalMessage(string M){message = M};
-	void setVigKey(string K){vigKey = K};
+	void setOriginalMessage(string M){message = M;};
+	void setVigKey(string K){vigKey = K;};
 	string performExtendVigKey();
 	string performVignereEncyption();
 
@@ -47,4 +50,6 @@ string Sender::performVignereEncyption()
 	    return Cv;
 
 }
+
+#endif
 
