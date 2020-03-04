@@ -5,6 +5,7 @@
 #include <gmp.h>
 #include <gmpxx.h>
 
+
 using namespace std;
 class Vignere
 {

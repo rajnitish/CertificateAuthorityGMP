@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <vector>
 
+
 #define CA_PUBLIC_KEY		0
 #define CA_N				1
 #define ALICE_PRIVATE_KEY	2
@@ -325,6 +326,7 @@ int main()
 	KEY_SIZE = K.size();
 	Vignere V;
 	string Cs = V.performVignereEncyption(M,K); //Cs  = E(m, k)
+
 
 
 	mpz_class Alice_d = ReadAlicePrivateData(ALICE_PRIVATE_KEY);

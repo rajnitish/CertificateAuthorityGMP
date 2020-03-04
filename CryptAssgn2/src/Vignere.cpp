@@ -19,6 +19,7 @@ string Vignere::performExtendVigKey(int TextSize, string key)
 	return extdKey;
 }
 
+
 string Vignere::performVignereEncyption(string Text,string Key)
 {
 	string Cv;
