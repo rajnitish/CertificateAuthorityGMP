@@ -158,24 +158,6 @@ mpz_class ReadBob_N()
 
 }
 
-string convertNumbertoText(mpz_class C, unsigned int strSize)
-{
-	string str;
-	for(int i = strSize-1; i>=0;i--)
-	{
-		mpz_class X,P;
-		mpz_ui_pow_ui(P.get_mpz_t(),26,i);
-		mpz_fdiv_q(X.get_mpz_t(),C.get_mpz_t(),P.get_mpz_t());
-		C = C%P;
-		str += ('a' + X.get_ui());
-
-	}
-
-	reverse(str.begin(),str.end());
-	return str;
-}
-
-
 mpz_class convertTexttoNo(string S)
 {
 	mpz_class C;
@@ -334,12 +316,16 @@ int main()
 
 	string M="theweatherismorebeautifulthanotherdaysofcalendaryearihopeyouwill";
 
-	string K="iamnitishrajajsfhsuhfjjjddchcsjchsskhcjhsjhjhjhdjv";
+	string K="iamnitishraj";
+
+	cout<<" Text = "<<M<<endl;
+	cout<<" Key  = "<<K<<endl;
 
 	BLOCK_SIZE = M.size();
 	KEY_SIZE = K.size();
 	Vignere V;
 	string Cs = V.performVignereEncyption(M,K); //Cs  = E(m, k)
+
 
 	mpz_class Alice_d = ReadAlicePrivateData(ALICE_PRIVATE_KEY);
 	mpz_class Alice_n = ReadAlicePrivateData(ALICE_N);
@@ -350,6 +336,7 @@ int main()
 	string KEY 	  = computeRSA(Alice_d,Alice_n,Bob_e,Bob_n,K);
 
 	SendToBob(CIPHER, KEY );
+
 
 	return 0;
 }

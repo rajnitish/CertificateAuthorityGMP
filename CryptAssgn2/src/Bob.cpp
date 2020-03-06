@@ -263,8 +263,6 @@ string computeRSA(mpz_class Alice_e,mpz_class Alice_n, mpz_class Bob_d,mpz_class
 	unsigned i = 0;
 	unsigned int bSize = BLOCK_SIZE.get_ui();
 
-	cout<<" bSize  = "<<bSize<<endl;
-
 	if(Bob_n<Alice_n)
 	{
 		if( (Text<Bob_n)||(Text <Alice_n) )
@@ -274,12 +272,10 @@ string computeRSA(mpz_class Alice_e,mpz_class Alice_n, mpz_class Bob_d,mpz_class
 			mpz_class Cs = obj.performDecryption(Eb_Cs,Bob_d,Bob_n);
 
 			S += convertNumbertoText(Cs,bSize);
-			cout<<"1. SHINI = "<<S<<endl;
 
 		}
 		else
 		{
-			cout<< "1. THIS SECTION"<<endl;
 			while(tmp.size()){
 				str.clear();
 				string X = Text.get_str(10);
@@ -318,13 +314,11 @@ string computeRSA(mpz_class Alice_e,mpz_class Alice_n, mpz_class Bob_d,mpz_class
 			mpz_class Cs = obj.performDecryption(Eb_Cs,Alice_e,Alice_n);
 
 			S += convertNumbertoText(Cs,bSize);
-			cout<<"2. SHINI = "<<S<<endl;
 
 
 		}
 		else
 		{
-			cout<< "2. THIS SECTION"<<endl;
 			while(tmp.size()){
 				str.clear();
 				string X = Text.get_str(10);
@@ -410,10 +404,6 @@ int main()
 
 		}
 	}
-
-
-	cout<<" BOB:: CipM   "<<CipM<<endl;
-	cout<<" BOB:: VigKey "<<VigKey<<endl;
 
 	Vignere V;
 	string M = V.performVignereDecryption(CipM,VigKey);

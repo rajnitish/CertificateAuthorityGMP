@@ -42,8 +42,6 @@ string Vignere::performVignereDecryption(string Cip,string Key)
 	string P;
 	string vigKey = performExtendVigKey(Cip.size(),Key);
 
-	cout<<" vigKey = "<<vigKey<<endl;
-
 	for (int i = 0; i < Cip.size(); i++)
 	{
 		int d = Cip[i] - vigKey[i] + 26;
