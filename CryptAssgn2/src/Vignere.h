@@ -16,8 +16,11 @@ public:
 
 	void setOriginalMessage(string M){plainVig = M;};
 	void setVigKey(string K){vigKey = K;};
-	string performExtendVigKey();
-	string performVignereEncyption();
+	void setCipVig(string K){CipVig = K;};
+
+	string performExtendVigKey(int TextSize, string key);
+	string performVignereEncyption(string,string);
+	string performVignereDecryption(string,string);
 
 
 };
