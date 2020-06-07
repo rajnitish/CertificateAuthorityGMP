@@ -300,20 +300,39 @@ int main()
 
 
 
-	/******* Extraction of CA private key and n  CA(d,n) from Alice file *******************************/
+	/******* Extraction of CA private key and n  CA(d,n) *******************************/
 	mpz_class CA_d = ReadCAPrivateKey();
 	mpz_class CA_n = ReadCA_N();
+
+	cout<<"\n******* Extraction of CA private key and n  CA(d,n) *******************************\n "<<endl;
+	cout<<"Reading CA Private Key "<<endl;
+	cout<<CA_d<<endl;
+
+	cout<<"Reading CA n "<<endl;
+	cout<<CA_n<<endl;
 
 
 	/******** Extraction of Bob's Encrypted Public key and its n  from public file *********************/
 	mpz_class Cip_Bob_e =  ReadBobPublicKey();
 	mpz_class Cip_Bob_n =  ReadBob_N();
 
+	cout<<" \n******** Extraction of Bob's Encrypted Public key and its n  from public file *********************\n"<<endl;
+	cout<<" Reading Bob's encrypted Public Key \n"<<endl;
+	cout<<Cip_Bob_e<<endl;
+
+	cout<<" Reading Bob's encrypted n \n"<<endl;
+	cout<<Cip_Bob_n<<endl;
+
+
 	/************** Decryption of Bob's Encrypted Public key and its n  ******************************/
 	RSA obj;
 	mpz_class Bob_e =  obj.performDecryption(Cip_Bob_e,CA_d,CA_n);
 	mpz_class Bob_n =  obj.performDecryption(Cip_Bob_n,CA_d,CA_n);
 
+
+	cout<<" ************** Decryption of Bob's Encrypted Public key and its n  ******************************  RSA \n"<<endl;
+	cout<<"Bob_e = "<<Bob_e<<endl;
+	cout<<"Bob_n = "<<Bob_n<<endl;
 
 	string M="theweatherismorebeautifulthanotherdaysofcalendaryearihopeyouwill";
 
@@ -327,11 +346,15 @@ int main()
 	Vignere V;
 	string Cs = V.performVignereEncyption(M,K); //Cs  = E(m, k)
 
-
+	cout<<" Encrypting Text using Vignere encryption \n"<<endl;
+	cout<<" Encrypted message is Cs = "<<Cs<<endl;
 
 	mpz_class Alice_d = ReadAlicePrivateData(ALICE_PRIVATE_KEY);
 	mpz_class Alice_n = ReadAlicePrivateData(ALICE_N);
 
+	cout<<" Reading Alice its own private data \n"<<endl;
+	cout<<"Alice_d = "<<Alice_d<<endl;
+	cout<<"Alice_n = "<<Alice_n<<endl;
 
 	string CIPHER = computeRSA(Alice_d,Alice_n,Bob_e,Bob_n,Cs);
 	vec.push_back("$");
@@ -339,6 +362,8 @@ int main()
 
 	SendToBob(CIPHER, KEY );
 
+	cout<<" Computing Cipher of Cs (Vignere Cipher) & Vignere K using Bob's Public Key (Bob_d,Bob_n) and further with Alice's Private Key (Alice_d,Alice_n)\n  "<<endl;
+	cout<<" Send these info to Bob"<<endl;
 
 	return 0;
 }

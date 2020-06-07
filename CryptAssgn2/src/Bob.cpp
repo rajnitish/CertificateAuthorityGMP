@@ -363,19 +363,48 @@ int main()
 	mpz_class CA_d = ReadCAPrivateKey();
 	mpz_class CA_n = ReadCA_N();
 
+
+	cout<<"\n******* Reading of CA private key and n  CA(d,n) *******************************\n "<<endl;
+	cout<<"Reading CA Private Key "<<endl;
+	cout<<CA_d<<endl;
+
+	cout<<"Reading CA n "<<endl;
+	cout<<CA_n<<endl;
+
+
 	/******** Extraction of Alice's Encrypted Public key and its n  from public file *********************/
 	mpz_class Cip_Alice_e =  ReadAlicePublicKey();
 	mpz_class Cip_Alice_n =  ReadAlice_N();
+
+
+	cout<<" \n******** Reading of Alice's Encrypted Public key and its n  from public file *********************\n"<<endl;
+	cout<<" Reading Alice's encrypted Public Key \n"<<endl;
+	cout<<Cip_Alice_e<<endl;
+
+	cout<<" Reading Alice's encrypted n \n"<<endl;
+	cout<<Cip_Alice_n<<endl;
+
 
 	RSA obj;
 	mpz_class Alice_e =  obj.performDecryption(Cip_Alice_e,CA_d,CA_n);
 	mpz_class Alice_n =  obj.performDecryption(Cip_Alice_n,CA_d,CA_n);
 
 
+	cout<<" ************** Decryption of Alice's Encrypted Public key and its n  ******************************  RSA \n"<<endl;
+	cout<<"Alice_e = "<<Alice_e<<endl;
+	cout<<"Alice_n = "<<Alice_n<<endl;
+
+
 	mpz_class Bob_d = ReadBobPrivateData(BOB_PRIVATE_KEY);
 	mpz_class Bob_n = ReadBobPrivateData(BOB_N);
 
+	cout<<" Reading Bob its own private data \n"<<endl;
+	cout<<"Bob_d = "<<Bob_d<<endl;
+	cout<<"Bob_n = "<<Bob_n<<endl;
+
 	ReadCommFile();
+
+	cout<<" Reading encrypted data sent which is sent by Alice "<<endl;
 
 	string CipM,VigKey;
 	for(int i = 0;i<vec.size();i = i+2)
@@ -405,8 +434,15 @@ int main()
 		}
 	}
 
+	cout<<" Decrypting the encrypted data which was encrypted using twice by Alice's Private and Bob's Public keys" <<endl;
+	cout<<" After Decrypting Cs = "<<CipM<<endl;
+	cout<<" After Decrypting VigKey = "<<VigKey<<endl;
+
+
 	Vignere V;
 	string M = V.performVignereDecryption(CipM,VigKey);
+
+	cout<<" Final Decryption of Vig Cipher "<<endl;
 
 	cout<<"M = "<<M<<endl;
 

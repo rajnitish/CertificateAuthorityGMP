@@ -74,6 +74,9 @@ int main(void) {
 	flag = CA_Q.set_str("618970019642690137449562111",10);   	       		assert (flag == 0);
 	flag = CA_E.set_str("170141183460469231731687303715884105727",10);  	assert (flag == 0);
 
+	cout<<"CA_P = "<<CA_P<<endl;
+	cout<<"CA_Q = "<<CA_Q<<endl;
+	cout<<"CA_E = "<<CA_E<<endl;
 	cout<<" Generating CA keys "<<endl;
 
 	KeySet CA_KS = K1.generateKeys(CA_P,CA_Q,CA_E);
@@ -83,7 +86,11 @@ int main(void) {
 	flag = Alice_Q.set_str("53644737765488792839237440001",10);   	       	assert (flag == 0);
 	flag = Alice_E.set_str("424264068711928514640506617262909423",10);  	assert (flag == 0);
 
-	cout<<" Generating Alice keys "<<endl;
+
+	cout<<"Alice_P = "<<Alice_P<<endl;
+	cout<<"Alice_Q = "<<Alice_Q<<endl;
+	cout<<"Alice_E = "<<Alice_E<<endl;
+	cout<<" Generating Alice keys and sharing secret keys with Alice in Alice.key file"<<endl;
 
 	KeySet Alice_KS = K2.generateKeys(Alice_P,Alice_Q,Alice_E);
 	SendToUser(Alice_KS,CA_KS,ALICE);
@@ -93,7 +100,11 @@ int main(void) {
 	flag = Bob_Q.set_str("13666666666666631",10);					assert (flag == 0);
 	flag = Bob_E.set_str("123456789878987654321",10);				assert (flag == 0);
 
-	cout<<" Generating Bob keys "<<endl;
+
+	cout<<"Bob_P = "<<Bob_P<<endl;
+	cout<<"Bob_Q = "<<Bob_Q<<endl;
+	cout<<"Bob_E = "<<Bob_E<<endl;
+	cout<<" Generating Bob keys and sharing secret keys with Bob in Bob.key file "<<endl;
 
 	KeySet Bob_KS = K3.generateKeys(Bob_P,Bob_Q,Bob_E);
 
@@ -113,7 +124,9 @@ int main(void) {
 
 	SendToUser(Bob_KS,CA_KS,BOB);
 
-	cout<<"Publishing keys "<<endl;
+	cout<<"Publishing Encrypted CA's public keys using RSA with public keys of Alice "<<endl;
+
+	cout<<"Publishing Encrypted CA's public keys using RSA with public keys of Bob "<<endl;
 
 	publishPublic(CA_KS, Alice_KS,Bob_KS);
 
